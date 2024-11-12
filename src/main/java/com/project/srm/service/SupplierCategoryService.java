@@ -28,7 +28,7 @@ public class SupplierCategoryService {
         supplierCategoryRepository.deleteById(id);
     }
 
-    public void updateCompany(SupplierCategory supplierCategory, Long id) {
+    public void updateSupplierCategory(SupplierCategory supplierCategory, Long id) {
         SupplierCategory exist = supplierCategoryRepository.findById(id).orElseThrow();
         exist.setIdSupplierCategory(supplierCategory.getIdSupplierCategory());
         exist.setNmSupplierCategory(supplierCategory.getNmSupplierCategory());
