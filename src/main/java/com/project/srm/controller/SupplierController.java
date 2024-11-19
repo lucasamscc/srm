@@ -34,4 +34,10 @@ public class SupplierController {
         supplierService.saveSupplier(company, cdSupplierCategory);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        supplierService.deleteSupplier(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

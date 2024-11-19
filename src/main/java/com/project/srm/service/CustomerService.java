@@ -1,9 +1,6 @@
 package com.project.srm.service;
 
-import com.project.srm.model.Company;
-import com.project.srm.model.Customer;
-import com.project.srm.model.CustomerCategory;
-import com.project.srm.repository.CustomerCategoryRepository;
+import com.project.srm.model.*;
 import com.project.srm.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,14 +26,15 @@ public class CustomerService {
         return customerRepository.findById(id).orElseThrow();
     }
 
-    public void saveCustomer(Customer customer, Long companyId, Long customerCategoryId) {
-        Company company = companyService.getCompany(companyId);
-        CustomerCategory customerCategory = customerCategoryService.getById(customerCategoryId);
-        customer.setCompany(company);
+    public void saveCustomer(Company company, Long cdCustomerCategory) {
+        Company savedCompany = companyService.saveCompany(company);
+        CustomerCategory customerCategory = customerCategoryService.getById(cdCustomerCategory);
+
+        Customer customer = new Customer();
+        customer.setCompany(savedCompany);
         customer.setCustomerCategory(customerCategory);
         customerRepository.save(customer);
     }
-
     public void deleteCustomer(Long id) {
         customerRepository.deleteById(id);
     }
