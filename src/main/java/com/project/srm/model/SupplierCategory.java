@@ -7,7 +7,6 @@ import lombok.Data;
 @Entity
 @Table(name="suppliercategory")
 public class SupplierCategory {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="cdsuppliercategory")

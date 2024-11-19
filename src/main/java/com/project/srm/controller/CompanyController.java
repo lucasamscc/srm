@@ -17,13 +17,13 @@ public class CompanyController {
 
     @GetMapping("{id}")
     public ResponseEntity<Company> getCompany(@PathVariable Long id) {
-        Company byId = companyService.getById(id);
+        Company byId = companyService.getCompany(id);
         return ResponseEntity.ok(byId);
     }
 
     @GetMapping
     public List<Company> getCompanies() {
-        return companyService.getAll();
+        return companyService.getCompanies();
     }
 
     @PostMapping
@@ -40,7 +40,7 @@ public class CompanyController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        companyService.deleteById(id);
+        companyService.deleteCompany(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

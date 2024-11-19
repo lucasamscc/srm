@@ -12,19 +12,25 @@ public class CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
-    public Company getById(Long id) {
+    public Company getCompany(Long id) {
         return companyRepository.findById(id).orElseThrow();
     }
 
-    public List<Company> getAll() {
+    public List<Company> getCompanies() {
         return (List<Company>) companyRepository.findAll();
     }
 
-    public void saveCompany(Company company) {
-        companyRepository.save(company);
+    public Company saveCompany(Company company) {
+        if (companyRepository.existsByIdCompany(company.getIdCompany())) {
+            throw new RuntimeException("Company ID must be unique");
+        }
+        if (companyRepository.existsByTaxId(company.getIdTax())) {
+            throw new RuntimeException("Tax ID must be unique");
+        }
+        return companyRepository.save(company);
     }
 
-    public void deleteById(Long id) {
+    public void deleteCompany(Long id) {
         companyRepository.deleteById(id);
     }
 
