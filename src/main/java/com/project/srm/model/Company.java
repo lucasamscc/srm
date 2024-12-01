@@ -13,7 +13,7 @@ public class Company {
     @Column(name="cdcompany")
     private Long cdCompany;
 
-    @Column(name="idcompany", nullable = false)
+    @Column(name="idcompany", nullable = false, unique = true)
     private String idCompany;
 
     @Column(name="nmcompany", nullable = false)
